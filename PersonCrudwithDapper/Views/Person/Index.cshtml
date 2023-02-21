@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PersonViewModel>
+
+<h2>Person List</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Gender</th>
+            <th>Country</th>
+            <th>State</th>
+            <th>City</th>
+            <th>Date of Birth</th>
+            <th>Hobbies</th>
+            <th>Accept T&amp;C</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@person.Id</td>
+                <td>@person.FirstName</td>
+                <td>@person.Gender</td>
+                <td>@person.Country</td>
+                <td>@person.State</td>
+                <td>@person.City</td>
+                <td>@person.DateOfBirth.ToShortDateString()</td>
+                <td>@person.Hobbies</td>
+                <td>@(person.AcceptTermsAndCondition ? "Yes" : "No")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@person.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@person.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@person.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
